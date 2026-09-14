@@ -19,3 +19,10 @@ authenticated maintainer bootstrap exception. Configure npm Trusted Publishing
 for `LeMouf / konitif-timeline / publish.yml / npm-release` before enabling later
 OIDC releases.
 
+## 0.285.0 migration
+
+`projectClipToTimeline` was a source-format adapter and is no longer part of the
+generic Timeline API. Hosts now call `projectTimelineSubject` with explicit,
+versioned `TimelineTrackProjectionContribution` values. Behavior animation clips
+are adapted by `@maxtronics/behavior-timeline`; this keeps their target,
+property, frame, unit and interpolation vocabulary outside the public package.

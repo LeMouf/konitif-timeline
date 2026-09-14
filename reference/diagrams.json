@@ -4,23 +4,25 @@
   "diagrams": [
     {
       "id": "timeline-projection-cycle",
-      "title": "Manipulate a clip over time",
+      "title": "Compose a temporal projection",
       "kind": "mechanism",
-      "summary": "The Timeline projects a clip, reduces local intents and samples its tracks without owning the clip.",
+      "summary": "The host composes explicit track contributions over a caller-owned subject, while Timeline owns only its derived projection and local surface state.",
       "nodes": [
-        { "id": "clip", "label": "Canonical clip", "description": "The temporal subject comes from its authority." },
-        { "id": "projection", "label": "Timeline projection", "description": "The clip is translated into readable tracks.", "tone": "projection" },
+        { "id": "subject", "label": "Canonical subject", "description": "The temporal subject remains under its upstream authority." },
+        { "id": "contributions", "label": "Track contributions", "description": "Specializations provide explicit, versioned projectors." },
+        { "id": "projection", "label": "Timeline projection", "description": "Contributions translate the subject into readable tracks.", "tone": "projection" },
         { "id": "intent", "label": "Timeline intent", "description": "A position, range or selection change is requested." },
         { "id": "state", "label": "Surface state", "description": "The reducer updates the local reading state." },
         { "id": "sample", "label": "Sample", "description": "A value is read at a given temporal coordinate.", "tone": "observation" }
       ],
       "edges": [
-        { "from": "clip", "to": "projection" },
+        { "from": "subject", "to": "projection" },
+        { "from": "contributions", "to": "projection" },
         { "from": "projection", "to": "intent" },
         { "from": "intent", "to": "state" },
         { "from": "state", "to": "sample" }
       ],
-      "caption": "A visual Timeline change does not create a new clip revision by itself."
+      "caption": "A Timeline projection can be removed or reconfigured without changing the subject or its semantic revision."
     }
   ]
 }
