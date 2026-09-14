@@ -1,14 +1,25 @@
-import type { KonitifClip } from '@konitif/core';
 import {
   createTimelineState,
-  projectClipToTimeline,
+  defineTimelineTrackProjectionContribution,
+  projectTimelineSubject,
   reduceTimelineState,
   type TimelineProjection,
   type TimelineState,
 } from '@konitif/timeline';
 
-declare const clip: KonitifClip;
-const projection: TimelineProjection = projectClipToTimeline(clip);
+const metrics = defineTimelineTrackProjectionContribution<{
+  id: string;
+  durationSeconds: number;
+}>({
+  id: 'consumer.metrics',
+  version: '1.0.0',
+  project: () => [],
+});
+const projection: TimelineProjection = projectTimelineSubject({ id: 'subject', durationSeconds: 2 }, {
+  getSourceId: subject => subject.id,
+  getDurationSeconds: subject => subject.durationSeconds,
+  trackContributions: [metrics],
+});
 const initial: TimelineState = createTimelineState(projection);
 const next: TimelineState = reduceTimelineState(projection, initial, {
   type: 'seek',

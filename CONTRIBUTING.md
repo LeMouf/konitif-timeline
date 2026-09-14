@@ -13,5 +13,4 @@ npm test
 npm run verify:package
 ```
 
-Keep Timeline projection state separate from canonical Clip authority, clocks, runtimes and product policy. Follow `RELEASE.md` for publication.
-
+Keep Timeline projection state separate from canonical Clip authority, clocks, runtimes and domain policy. Follow `RELEASE.md` for publication.

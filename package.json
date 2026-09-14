@@ -1,10 +1,10 @@
 {
   "name": "@konitif/timeline",
   "license": "PolyForm-Noncommercial-1.0.0",
-  "version": "0.284.2",
+  "version": "0.285.0",
   "private": false,
   "type": "module",
-  "description": "Headless temporal projection and interaction state over KONITIF clips and tracks.",
+  "description": "Headless temporal projection, composable track contributions and interaction state.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LeMouf/konitif-timeline.git"
@@ -36,7 +36,6 @@
     "prepublishOnly": "npm run build && npm test"
   },
   "dependencies": {
-    "@konitif/core": "0.284.3",
     "@konitif/tools": "0.284.4"
   },
   "devDependencies": {

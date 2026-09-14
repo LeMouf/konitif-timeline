@@ -1,21 +1,35 @@
 {
   "schemaVersion": "1.0.0",
   "package": "@konitif/timeline",
-  "intent": "Project and manipulate clips over time without owning their identity.",
+  "intent": "Project temporal subjects through composable track contributions without owning their identity.",
   "clusters": [
     {
       "id": "projection",
       "title": "Temporal projection",
-      "summary": "Read clips and tracks in Timeline coordinates.",
+      "summary": "Read caller-owned temporal subjects in Timeline coordinates.",
       "authority": "Derived temporal projection.",
       "owns": ["projections", "sampling"],
-      "doesNotOwn": ["canonical clip"],
+      "doesNotOwn": ["canonical subject", "domain track semantics"],
       "workflow": ["Project", "Sample", "Read"],
       "symbolNames": [
-        "projectClipToTimeline",
+        "projectTimelineSubject",
         "sampleTimelineTrack",
         "TimelineProjection",
         "TimelineTrackProjection"
+      ]
+    },
+    {
+      "id": "track-composition",
+      "title": "Track composition",
+      "summary": "Compose explicit, versioned track projectors supplied by specializations.",
+      "authority": "Host-selected projection composition.",
+      "owns": ["contribution contract", "deterministic composition"],
+      "doesNotOwn": ["global registry", "source format", "domain vocabulary"],
+      "workflow": ["Define", "Compose", "Project"],
+      "symbolNames": [
+        "defineTimelineTrackProjectionContribution",
+        "TimelineTrackProjectionContribution",
+        "TimelineProjectionDefinition"
       ]
     },
     {
