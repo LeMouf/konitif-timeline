@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0.0",
+  "package": "@konitif/timeline",
+  "intent": "Project and manipulate clips over time without owning their identity.",
+  "clusters": [
+    {
+      "id": "projection",
+      "title": "Temporal projection",
+      "summary": "Read clips and tracks in Timeline coordinates.",
+      "authority": "Derived temporal projection.",
+      "owns": ["projections", "sampling"],
+      "doesNotOwn": ["canonical clip"],
+      "workflow": ["Project", "Sample", "Read"],
+      "symbolNames": [
+        "projectClipToTimeline",
+        "sampleTimelineTrack",
+        "TimelineProjection",
+        "TimelineTrackProjection"
+      ]
+    },
+    {
+      "id": "interaction",
+      "title": "State and intents",
+      "summary": "Local state and explicit manipulation intents.",
+      "authority": "Timeline surface state.",
+      "owns": ["state", "intents"],
+      "doesNotOwn": ["domain commands"],
+      "workflow": ["Create", "Reduce", "Project"],
+      "symbolNames": [
+        "createTimelineState",
+        "reduceTimelineState",
+        "TimelineIntent",
+        "TimelineState"
+      ]
+    },
+    {
+      "id": "integration",
+      "title": "Tool module",
+      "summary": "Declare the Timeline contribution to a tool registry.",
+      "authority": "Integration declaration.",
+      "owns": ["Timeline capability"],
+      "doesNotOwn": ["hosting"],
+      "workflow": ["Declare", "Register", "Host"],
+      "symbolNames": ["timelineToolModule"]
+    }
+  ]
+}
