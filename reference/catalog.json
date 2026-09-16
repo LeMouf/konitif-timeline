@@ -35,16 +35,24 @@
     {
       "id": "interaction",
       "title": "State and intents",
-      "summary": "Local state and explicit manipulation intents.",
+      "summary": "Local state, explicit manipulation intents and deterministic viewport projection.",
       "authority": "Timeline surface state.",
-      "owns": ["state", "intents"],
-      "doesNotOwn": ["domain commands"],
-      "workflow": ["Create", "Reduce", "Project"],
+      "owns": ["state", "intents", "viewport projection math"],
+      "doesNotOwn": ["domain commands", "DOM events", "runtime clock authority"],
+      "workflow": ["Create", "Reduce", "Scale", "Project"],
       "symbolNames": [
         "createTimelineState",
+        "createTimelineTicks",
+        "getTimelineGridMetrics",
+        "getTimelinePositionPercent",
+        "getTimelineScrubResult",
+        "getTimelineWheelZoomWindow",
         "reduceTimelineState",
+        "normalizeTimelineViewWindow",
         "TimelineIntent",
-        "TimelineState"
+        "TimelineState",
+        "TimelineVisibleRange",
+        "TimelineViewWindow"
       ]
     },
     {
