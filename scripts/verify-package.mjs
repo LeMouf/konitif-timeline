@@ -5,6 +5,7 @@ import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync 
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { copyInstalledDependencies } from './copy-installed-dependencies.mjs';
 
 const root = realpathSync(fileURLToPath(new URL('..', import.meta.url)));
 const manifest = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
@@ -14,7 +15,7 @@ const run = (command, args, cwd = root) => execFileSync(command, args, {
   cwd,
   encoding: 'utf8',
   maxBuffer: 16 * 1024 * 1024,
-  env: { ...process.env, npm_config_offline: 'true', npm_config_cache: cache },
+  env: { ...process.env, npm_config_offline: 'true', npm_config_update_notifier: 'false', npm_config_cache: cache },
 });
 
 const npmCli = process.platform === 'win32'
@@ -42,28 +43,7 @@ const installedPackage = join(consumer, 'node_modules', ...manifest.name.split('
 mkdirSync(installedPackage, { recursive: true });
 const archive = join(archiveDirectory, packed.filename);
 run('tar', ['-xzf', archive, '-C', installedPackage, '--strip-components=1']);
-const copiedDependencies = new Set();
-function copyDependency(dependency, parent = root) {
-  if (copiedDependencies.has(dependency)) return;
-  const relative = ['node_modules', ...dependency.split('/')];
-  const candidates = [
-    join(parent, ...relative),
-    join(root, ...relative),
-    join(root, '../..', ...relative),
-  ];
-  const installed = candidates.find(existsSync);
-  assert.ok(installed, `Installed dependency required: ${dependency}`);
-  const source = realpathSync(installed);
-  const target = join(consumer, ...relative);
-  mkdirSync(dirname(target), { recursive: true });
-  cpSync(source, target, { recursive: true });
-  copiedDependencies.add(dependency);
-  const dependencyManifest = JSON.parse(readFileSync(join(source, 'package.json'), 'utf8'));
-  for (const transitive of Object.keys(dependencyManifest.dependencies ?? {})) {
-    copyDependency(transitive, source);
-  }
-}
-for (const dependency of Object.keys(manifest.dependencies ?? {})) copyDependency(dependency);
+const dependencies = copyInstalledDependencies(root, consumer);
 cpSync(join(root, 'tests/consumer.mts'), join(consumer, 'consumer.mts'));
 const compilerCandidates = [
   join(root, 'node_modules/typescript/bin/tsc'),
@@ -79,6 +59,7 @@ console.log(JSON.stringify({
   status: 'passed',
   name: manifest.name,
   version: manifest.version,
+  dependencies,
   integrity: packed.integrity,
   sha256: createHash('sha256').update(bytes).digest('hex'),
   bytes: bytes.length,

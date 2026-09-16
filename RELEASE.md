@@ -23,6 +23,7 @@ OIDC releases.
 
 `projectClipToTimeline` was a source-format adapter and is no longer part of the
 generic Timeline API. Hosts now call `projectTimelineSubject` with explicit,
-versioned `TimelineTrackProjectionContribution` values. Behavior animation clips
-are adapted by `@maxtronics/behavior-timeline`; this keeps their target,
-property, frame, unit and interpolation vocabulary outside the public package.
+versioned `TimelineTrackProjectionContribution` values. Domain-specific source
+formats are adapted by private or application-owned specializations; this keeps
+their target, property, frame, unit and interpolation vocabulary outside the
+public package.

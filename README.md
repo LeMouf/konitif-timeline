@@ -14,6 +14,8 @@ npm install @konitif/timeline
 - Read-only Timeline projections derived from caller-owned subjects.
 - Explicit, versioned track contributions composed by the host.
 - Local cursor, visible-range and selection state.
+- Deterministic viewport normalization, scale, ticks and grid projection.
+- Projection-local coordinate mapping, wheel zoom and scrubbing calculations.
 - Explicit intents and a deterministic state reducer.
 - Numeric track sampling with an injectable interpolation function.
 - A portable Timeline tool-module declaration.
@@ -25,15 +27,19 @@ revision. Track kinds, source formats and domain commands are supplied by
 specializations; the public package does not define source-specific track kinds
 or media formats.
 Cursor position, visible range and selection belong to the Timeline surface.
-The package contains no Svelte, DOM, host store, clock, domain-specific
-semantics or execution policy.
+The package contains no Svelte, DOM, host store, runtime clock authority,
+domain-specific semantics or execution policy.
 
 ## Quick start
 
 ```ts
 import {
   createTimelineState,
+  createTimelineTicks,
   defineTimelineTrackProjectionContribution,
+  getTimelineGridMetrics,
+  getTimelineWheelZoomWindow,
+  normalizeTimelineViewWindow,
   projectTimelineSubject,
   reduceTimelineState,
 } from '@konitif/timeline';
@@ -54,13 +60,31 @@ const next = reduceTimelineState(projection, initial, {
   type: 'seek',
   timeSeconds: 1.25,
 });
+const viewport = normalizeTimelineViewWindow({
+  duration: projection.durationSeconds,
+  start: 0,
+  end: projection.durationSeconds,
+});
+const ticks = createTimelineTicks(viewport.start, viewport.end, viewport.zoomX);
+const grid = getTimelineGridMetrics({
+  ticks,
+  visibleRange: viewport,
+  fps: 30,
+});
+const zoomedViewport = getTimelineWheelZoomWindow({
+  duration: projection.durationSeconds,
+  visibleRange: viewport,
+  zoomX: viewport.zoomX,
+  clientRatio: 0.5,
+  deltaY: -120,
+});
 ```
 
 ## Public entry points
 
 | Entry | Purpose |
 | --- | --- |
-| `@konitif/timeline` | Timeline contracts, explicit track composition, state, intents, reducer and sampling. |
+| `@konitif/timeline` | Timeline contracts, explicit track composition, state, scale and viewport projection, intents, reducer and sampling. |
 
 ## Reference
 
