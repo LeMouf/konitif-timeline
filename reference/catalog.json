@@ -8,14 +8,30 @@
       "title": "Temporal projection",
       "summary": "Read caller-owned temporal subjects in Timeline coordinates.",
       "authority": "Derived temporal projection.",
-      "owns": ["projections", "sampling"],
-      "doesNotOwn": ["canonical subject", "domain track semantics"],
-      "workflow": ["Project", "Sample", "Read"],
+      "owns": [
+        "projections",
+        "sampling"
+      ],
+      "doesNotOwn": [
+        "canonical subject",
+        "domain track semantics"
+      ],
+      "workflow": [
+        "Project",
+        "Sample",
+        "Read"
+      ],
       "symbolNames": [
         "projectTimelineSubject",
         "sampleTimelineTrack",
         "TimelineProjection",
-        "TimelineTrackProjection"
+        "TimelineTrackProjection",
+        "linearTimelineInterpolation",
+        "TimelineInterpolation",
+        "TimelineKeyId",
+        "TimelineKeyProjection",
+        "TimelineSourceId",
+        "TimelineTrackId"
       ]
     },
     {
@@ -23,9 +39,20 @@
       "title": "Track composition",
       "summary": "Compose explicit, versioned track projectors supplied by specializations.",
       "authority": "Host-selected projection composition.",
-      "owns": ["contribution contract", "deterministic composition"],
-      "doesNotOwn": ["global registry", "source format", "domain vocabulary"],
-      "workflow": ["Define", "Compose", "Project"],
+      "owns": [
+        "contribution contract",
+        "deterministic composition"
+      ],
+      "doesNotOwn": [
+        "global registry",
+        "source format",
+        "domain vocabulary"
+      ],
+      "workflow": [
+        "Define",
+        "Compose",
+        "Project"
+      ],
       "symbolNames": [
         "defineTimelineTrackProjectionContribution",
         "TimelineTrackProjectionContribution",
@@ -37,9 +64,22 @@
       "title": "State and intents",
       "summary": "Local state, explicit manipulation intents and deterministic viewport projection.",
       "authority": "Timeline surface state.",
-      "owns": ["state", "intents", "viewport projection math"],
-      "doesNotOwn": ["domain commands", "DOM events", "runtime clock authority"],
-      "workflow": ["Create", "Reduce", "Scale", "Project"],
+      "owns": [
+        "state",
+        "intents",
+        "viewport projection math"
+      ],
+      "doesNotOwn": [
+        "domain commands",
+        "DOM events",
+        "runtime clock authority"
+      ],
+      "workflow": [
+        "Create",
+        "Reduce",
+        "Scale",
+        "Project"
+      ],
       "symbolNames": [
         "createTimelineState",
         "createTimelineTicks",
@@ -52,7 +92,27 @@
         "TimelineIntent",
         "TimelineState",
         "TimelineVisibleRange",
-        "TimelineViewWindow"
+        "TimelineViewWindow",
+        "formatTimelineClock",
+        "formatTimelineClockAdaptive",
+        "formatTimelineTime",
+        "getTimelineNormalizedRatio",
+        "getTimelineNormalizedRatioUnclamped",
+        "getTimelinePositionPercentUnclamped",
+        "normalizeTimelineStepTime",
+        "NormalizeTimelineViewWindowInput",
+        "resolveNiceTimelineStep",
+        "resolveTimelineWheelZoomFactor",
+        "snapTimelineZoomXToPracticalValue",
+        "TIMELINE_MAX_ZOOM_X",
+        "TIMELINE_PADDING_LEFT_PERCENT",
+        "TIMELINE_PADDING_RIGHT_PERCENT",
+        "TimelineGridMetrics",
+        "TimelineGridPatternLayer",
+        "TimelineHorizontalGridTone",
+        "TimelineScrubResult",
+        "TimelineTick",
+        "TimelineVerticalGridTone"
       ]
     },
     {
@@ -60,10 +120,20 @@
       "title": "Tool module",
       "summary": "Declare the Timeline contribution to a tool registry.",
       "authority": "Integration declaration.",
-      "owns": ["Timeline capability"],
-      "doesNotOwn": ["hosting"],
-      "workflow": ["Declare", "Register", "Host"],
-      "symbolNames": ["timelineToolModule"]
+      "owns": [
+        "Timeline capability"
+      ],
+      "doesNotOwn": [
+        "hosting"
+      ],
+      "workflow": [
+        "Declare",
+        "Register",
+        "Host"
+      ],
+      "symbolNames": [
+        "timelineToolModule"
+      ]
     }
   ]
 }
