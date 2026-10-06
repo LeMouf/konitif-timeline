@@ -28,6 +28,8 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - run: bash scripts/select-ci-runtime.sh
+        env:
+          KONITIF_PUBLISH_RUNTIME: '1'
       - name: Require the exact release tag on main history
         env:
           TIMELINE_RELEASE_TAG: ${{ github.event.inputs.release_tag || '' }}
