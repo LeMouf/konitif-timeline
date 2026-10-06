@@ -1,0 +1,2 @@
+# Preserve exact verified artifact bytes in Git.
+prepared/** -text

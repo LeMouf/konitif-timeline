@@ -1,0 +1,4 @@
+import type { TimelineProjection, TimelineProjectionDefinition, TimelineTrackProjection, TimelineTrackProjectionContribution } from './contracts.js';
+export declare function defineTimelineTrackProjectionContribution<TSubject, TTrack extends TimelineTrackProjection = TimelineTrackProjection>(contribution: TimelineTrackProjectionContribution<TSubject, TTrack>): TimelineTrackProjectionContribution<TSubject, TTrack>;
+export declare function projectTimelineSubject<TSubject, TTrack extends TimelineTrackProjection = TimelineTrackProjection>(subject: TSubject, definition: TimelineProjectionDefinition<TSubject, TTrack>): TimelineProjection<TTrack>;
+//# sourceMappingURL=projection.d.ts.map

@@ -5,3 +5,7 @@ node_modules/
 .npm-cache/
 *.tgz
 *.log
+
+# Prepared module files are intentionally distributed as commit-pinned artifacts.
+!prepared/dist/
+!prepared/dist/**

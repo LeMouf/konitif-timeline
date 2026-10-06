@@ -1,0 +1,1 @@
+{"version":3,"file":"toolModule.js","sourceRoot":"","sources":["../src/toolModule.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,uBAAuB,EAAE,MAAM,gBAAgB,CAAC;AAEzD,MAAM,CAAC,MAAM,kBAAkB,GAAG,uBAAuB,CAAC;IACxD,EAAE,EAAE,kBAAkB;IACtB,IAAI,EAAE,kBAAkB;IACxB,UAAU,EAAE,qBAAqB;IACjC,WAAW,EAAE,0EAA0E;CACxF,CAAC,CAAC"}
