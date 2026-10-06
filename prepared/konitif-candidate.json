@@ -1,11 +1,11 @@
 {
   "packageName": "@konitif/timeline",
-  "packageVersion": "0.285.2",
+  "packageVersion": "0.285.3",
   "manifest": {
     "schemaVersion": "konitif-extension-manifest.v2",
     "id": "konitif.timeline",
     "displayName": "KONITIF Timeline",
-    "version": "0.285.2",
+    "version": "0.285.3",
     "packageName": "@konitif/timeline",
     "entrypoints": [
       {
@@ -169,11 +169,11 @@
       },
       {
         "module": "./package-lock.json",
-        "sha256": "sha256:d9fb4374251441311eed14cf89f078cbf6577496bd6af807ac6c9c05e7d71c50"
+        "sha256": "sha256:9f0f8ac76c07bd9f6ea080dfd423674b86fa88baf6adc7549375dc2d17b79480"
       },
       {
         "module": "./package.json",
-        "sha256": "sha256:bc74df764b0e77053ba6aac27e877df4fe6b7ea9cd4aeb2483cadade68969f08"
+        "sha256": "sha256:35e59e698cad3d6304011fca8d150e27f479140d057b225e9c7ea6968787df52"
       },
       {
         "module": "./src/contracts.ts",
@@ -348,11 +348,11 @@
     },
     {
       "module": "./package-lock.json",
-      "sha256": "sha256:d9fb4374251441311eed14cf89f078cbf6577496bd6af807ac6c9c05e7d71c50"
+      "sha256": "sha256:9f0f8ac76c07bd9f6ea080dfd423674b86fa88baf6adc7549375dc2d17b79480"
     },
     {
       "module": "./package.json",
-      "sha256": "sha256:bc74df764b0e77053ba6aac27e877df4fe6b7ea9cd4aeb2483cadade68969f08"
+      "sha256": "sha256:35e59e698cad3d6304011fca8d150e27f479140d057b225e9c7ea6968787df52"
     },
     {
       "module": "./src/contracts.ts",
